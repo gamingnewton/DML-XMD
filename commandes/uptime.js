@@ -1,1 +1,178 @@
-function _0x15f6(_0x2a140e,_0xad01f6){const _0x2caa3d=_0x2caa();return _0x15f6=function(_0x15f645,_0x3cb5ce){_0x15f645=_0x15f645-0x1e1;let _0x14a314=_0x2caa3d[_0x15f645];return _0x14a314;},_0x15f6(_0x2a140e,_0xad01f6);}const _0x10fb40=_0x15f6;(function(_0x216d77,_0x204e7c){const _0x330383=_0x15f6,_0x3c1dab=_0x216d77();while(!![]){try{const _0x49636b=parseInt(_0x330383(0x1f1))/0x1*(-parseInt(_0x330383(0x1ed))/0x2)+-parseInt(_0x330383(0x1e9))/0x3+parseInt(_0x330383(0x1e6))/0x4*(parseInt(_0x330383(0x1e8))/0x5)+-parseInt(_0x330383(0x1e4))/0x6*(-parseInt(_0x330383(0x1f6))/0x7)+-parseInt(_0x330383(0x1f5))/0x8+-parseInt(_0x330383(0x1fa))/0x9*(parseInt(_0x330383(0x1ee))/0xa)+parseInt(_0x330383(0x1f4))/0xb;if(_0x49636b===_0x204e7c)break;else _0x3c1dab['push'](_0x3c1dab['shift']());}catch(_0x302c73){_0x3c1dab['push'](_0x3c1dab['shift']());}}}(_0x2caa,0x8c6b5));const {zokou}=require(__dirname+_0x10fb40(0x1fb)),moment=require(_0x10fb40(0x1f0)),set=require(__dirname+_0x10fb40(0x1ea));moment['tz'][_0x10fb40(0x1e5)](''+set['TZ']),zokou({'nomCom':_0x10fb40(0x1f9),'categorie':_0x10fb40(0x1e3)},async(_0x2057e9,_0xae46e,_0x570bb)=>{const _0x1ad01d=_0x10fb40;let {ms:_0x4c8400}=_0x570bb;const {time:_0x5105e7,date:_0x4258f5}={'time':moment()['format']('HH:mm:ss'),'date':moment()['format'](_0x1ad01d(0x1ef))},_0x33065f=Math['floor'](Math['random']()*0x64)+0x1;try{await _0xae46e['sendMessage'](_0x2057e9,{'audio':{'url':'https://files.catbox.moe/elwnzy.mp3'},'mimetype':_0x1ad01d(0x1f8),'ptt':!![],'contextInfo':{'isForwarded':!![],'forwardedNewsletterMessageInfo':{'newsletterJid':_0x1ad01d(0x1ec),'newsletterName':_0x1ad01d(0x1eb),'serverMessageId':0x8f},'forwardingScore':0x3e7,'externalAdReply':{'title':_0x1ad01d(0x1e7),'body':'⚙️\x20Pong:\x20'+_0x33065f+_0x1ad01d(0x1fc)+_0x4258f5+_0x1ad01d(0x1f7)+_0x5105e7,'thumbnailUrl':_0x1ad01d(0x1e1),'mediaType':0x1,'renderSmallThumbnail':!![]}}},{'quoted':_0x4c8400});}catch(_0x2ab6bd){console[_0x1ad01d(0x1e2)](_0x1ad01d(0x1f2)+_0x2ab6bd),repondre(_0x1ad01d(0x1f3)+_0x2ab6bd);}});function _0x2caa(){const _0x3fd238=['2611347ZvCNqo','/../set','╭𝐃𝚳𝐋\x20𝚸𝚰𝚴𝐆','120363387497418815@newsletter','917368zQZRKQ','1825190gfgHxF','DD/MM/YYYY','moment-timezone','1eWSHwv','❌\x20Ping\x20Command\x20Error:\x20','❌\x20Error:\x20','12128468LgDFwY','2964296ARKfEP','819ncbvQW','\x0a⏰\x20*Time:*\x20','audio/mp4','ping','36OrKOzx','/../framework/zokou','ms\x0a📅\x20*Date:*\x20','https://files.catbox.moe/vcdwmp.jpg','log','General','50598bATwTL','setDefault','107724CcQgok','ᴅᴍʟ\x20ᴘɪɴɢ','170pgoZLL'];_0x2caa=function(){return _0x3fd238;};return _0x2caa();}
+const { zokou } = require("../framework/zokou");
+const { getBuffer } = require("../framework/dl/Function");
+const speed = require("performance-now");
+const config = require("../set");
+
+// Runtime formatter
+const runtime = function (seconds) {
+  seconds = Number(seconds);
+  var d = Math.floor(seconds / 86400);
+  var h = Math.floor(seconds % 86400 / 3600);
+  var m = Math.floor(seconds % 3600 / 60);
+  var s = Math.floor(seconds % 60);
+  var dDisplay = d > 0 ? d + (d == 1 ? " day, " : " d, ") : '';
+  var hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " h, ") : '';
+  var mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " m, ") : '';
+  var sDisplay = s > 0 ? s + (s == 1 ? " second" : " s") : '';
+  return dDisplay + hDisplay + mDisplay + sDisplay;
+};
+
+// =========================
+// ⚡ Ping Command
+// =========================
+zokou({
+  nomCom: "ping",
+  desc: "To check ping",
+  Categorie: "General",
+  reaction: "⏳",
+  fromMe: "true"
+}, async (dest, zk, ctx) => {
+  let timestamp = speed();
+  let flashspeed = (speed() - timestamp).toFixed(4);
+  const { repondre } = ctx;
+  await repondre("*Pong ▱▱▰▰▰ :" + flashspeed + " MS*");
+});
+
+// =========================
+// 🌍 Uptime Command
+// =========================
+zokou({
+  nomCom: "uptime",
+  desc: "To check runtime",
+  Categorie: "General",
+  reaction: "🌍",
+  fromMe: "true"
+}, async (dest, zk, ctx) => {
+  const { ms, repondre } = ctx;
+  const uptime = runtime(process.uptime());
+  const startTime = new Date(Date.now() - process.uptime() * 1000);
+
+  // Style 1: Classic Box
+  const style1 = `╭───『 UPTIME 』───⳹
+│
+│ ⏱️ ${uptime}
+│
+│ 🚀 Started: ${startTime.toLocaleString()}
+│
+╰────────────────⳹
+${config.DESCRIPTION || "DML-XMD Bot"}`;
+
+  // Style 2: Minimalist
+  const style2 = `•——[ UPTIME ]——•
+  │
+  ├─ ⏳ ${uptime}
+  ├─ 🕒 Since: ${startTime.toLocaleTimeString()}
+  │
+  •——[ ${config.BOT_NAME} ]——•`;
+
+  // Style 3: Fancy Borders
+  const style3 = `▄▀▄▀▄ BOT UPTIME ▄▀▄▀▄
+
+  ♢ Running: ${uptime}
+  ♢ Since: ${startTime.toLocaleDateString()}
+
+  ${config.DESCRIPTION || "dml-tech.online"}`;
+
+  // Style 4: Code Style
+  const style4 = `┌──────────────────────┐
+│  ⚡ UPTIME STATUS ⚡  │
+├──────────────────────┤
+│ • Time: ${uptime}
+│ • Started: ${startTime.toLocaleString()}
+│ • Version: 4.0.0
+└──────────────────────┘`;
+
+  // Style 5: Modern Blocks
+  const style5 = `▰▰▰▰▰ UPTIME ▰▰▰▰▰
+
+  ⏳ ${uptime}
+  🕰️ ${startTime.toLocaleString()}
+${config.DESCRIPTION || "We Are Unstoppable"}`;
+
+  // Style 6: Retro Terminal
+  const style6 = `╔══════════════════════╗
+║   ${config.BOT_NAME} UPTIME    ║
+╠══════════════════════╣
+║ > RUNTIME: ${uptime}
+║ > SINCE: ${startTime.toLocaleString()}
+╚══════════════════════╝`;
+
+  // Style 7: Elegant
+  const style7 = `┌───────────────┐
+│  ⏱️  UPTIME  │
+└───────────────┘
+│
+│ ${uptime}
+│
+│ Since ${startTime.toLocaleDateString()}
+│
+┌───────────────┐
+│  ${config.BOT_NAME}  │
+└───────────────┘`;
+
+  // Style 8: Social Media Style
+  const style8 = `⏱️ *Uptime Report* ⏱️
+
+🟢 Online for: ${uptime}
+📅 Since: ${startTime.toLocaleString()}
+
+${config.DESCRIPTION || "Watu ni Mtaji Tosha"}`;
+
+  // Style 9: Fancy List
+  const style9 = `╔♫═⏱️═♫══════════╗
+   ${config.BOT_NAME} UPTIME
+╚♫═⏱️═♫══════════╝
+
+•・゜゜・* ✧  *・゜゜・•
+ ✧ ${uptime}
+ ✧ Since ${startTime.toLocaleDateString()}
+•・゜゜・* ✧  *・゜゜・•`;
+
+  // Style 10: Professional
+  const style10 = `┏━━━━━━━━━━━━━━━━━━┓
+┃  UPTIME ANALYSIS  ┃
+┗━━━━━━━━━━━━━━━━━━┛
+
+◈ Duration: ${uptime}
+◈ Start Time: ${startTime.toLocaleString()}
+◈ Stability: 100%
+◈ Version:  4.0.0
+${config.DESCRIPTION || "Enjoy Using DML-XMD"}`;
+
+  const styles = [style1, style2, style3, style4, style5, style6, style7, style8, style9, style10];
+  const selectedStyle = styles[Math.floor(Math.random() * styles.length)];
+
+  await zk.sendMessage(dest, {
+    text: selectedStyle,
+    contextInfo: {
+      mentionedJid: [ctx.auteurMessage],
+      forwardingScore: 999,
+      isForwarded: true,
+      forwardedNewsletterMessageInfo: {
+        newsletterJid: "120363403958418756@newsletter",
+        newsletterName: config.OWNER_NAME || "DML-MD",
+        serverMessageId: 143
+      }
+    }
+  }, { quoted: ms });
+});
+
+// =========================
+// 🎥 Screenshot Command
+// =========================
+zokou({
+  nomCom: "ss",
+  desc: "screenshots website",
+  Categorie: "General",
+  reaction: "🎥",
+  fromMe: "true"
+}, async (dest, zk, ctx) => {
+  const { ms, arg, repondre } = ctx;
+  if (!arg || arg.length === 0) {
+    return repondre("Provide a link...");
+  }
+  const url = arg.join(" ");
+  const apiUrl = `https://api.maher-zubair.adams/misc/sstab?url=${url}&dimension=720x720`;
+  const buffer = await getBuffer(apiUrl);
+  await zk.sendMessage(dest, { image: buffer }, { caption: "*Powered by DML-XMD*" }, { quoted: ms });
+});
